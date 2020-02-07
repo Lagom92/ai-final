@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div style="margin: 30px;">
+        <h1 id="sub-pjt-3-">Sub PJT 3. 딥 러닝 모델을 이용한 챗봇 구현</h1>
+        <p>텍스트 전 처리 기법과 머신러닝 기법을 응용하여 딥 러닝 기반의 챗봇을 구현</p>
+        <p><img src="{{ url_for('static', filename='image/intro.gif') }}" alt=""></p>
+        <h3 id="url">URL</h3>
+        <p><a href="http://13.125.199.238:5000/">http://13.125.199.238:5000</a></p>
+        <h3 id="team">Team</h3>
+        <p>팀명: Think B</p>
+        <p>팀원: 조호근, 김훈, 양시영, 안현상, 김초희, 이지선</p>
+        <h3 id="project-period">Project Period</h3>
+        <p>기간: 2019/09/09 ~ 2019/10/11</p>
+        <h2 id="-">목표</h2>
+        <ul>
+            <li>질문과 대답으로 이루어진 데이터를 읽고 트레이닝 데이터와 테스트 데이터로 저장하기</li>
+            <li>Noise Canceling, Tokenizing 하기</li>
+            <li>token 사전 vocabularyData.voc 파일 만들기</li>
+            <li>인코딩, 디코딩용 함수 만들기</li>
+            <li>Transformer모델을 이용해 학습하기</li>
+            <li>predict.py를 구현하여 새로운 질문에 대답 데이터 출력하기</li>
+            <li>정확도 평가를 위한 BLEU, Rouge Score 구하기</li>
+            <li>Python Slack Client를 사용하여 Flask 서버 app.py 구현하기</li>
+            <li>Chatbot과 대화할 용도의 Web을 Flask 서버로 구현하기</li>
+            <li>
+                <p>Flask를 restful flask로 변경하기</p>
+            </li>
+            <li>
+                <p>Vue.js를 이용하여 웹 페이지 구현하기</p>
+            </li>
+            <li>
+                <p>Chatbot에 대화 데이터 추가 요청하기</p>
+            </li>
+        </ul>
+        <h2 id="learming-data">Learming Data</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Contents</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>데이터 이름</td>
+                    <td>Chatbot data</td>
+                </tr>
+                <tr>
+                    <td>데이터 용도</td>
+                    <td>한국어 챗봇 학습을 목적으로 사용한다.</td>
+                </tr>
+                <tr>
+                    <td>데이터 권한</td>
+                    <td>MIT 라이센스</td>
+                </tr>
+                <tr>
+                    <td>데이터 출처</td>
+                    <td><a href="https://github.com/songys/Chatbot_data(송영숙님">https://github.com/songys/Chatbot_data(송영숙님</a>)</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3 id="wordcloud">WordCloud</h3>
+        <ul>
+            <li>Question Data</li>
+        </ul>
+        <p><img src="{{ url_for('static', filename='image/wordcloud_in.png') }}" alt=""></p>
+        <ul>
+            <li>Answer Data</li>
+        </ul>
+        <p><img src="{{ url_for('static', filename='image/wordcloud_out.png') }}" alt=""></p>
+        <h2 id="requirement">Requirement</h2>
+        <pre>
+            <code>
+                <span class="hljs-attr">Flask</span>==<span class="hljs-number">0.12</span>.<span class="hljs-number">2</span>
+                <span class="hljs-attr">Flask-Cors</span>==<span class="hljs-number">3.0</span>.<span class="hljs-number">8</span>
+                <span class="hljs-attr">Flask-RESTful</span>==<span class="hljs-number">0.3</span>.<span class="hljs-number">7</span>
+                <span class="hljs-attr">JPype1</span>==<span class="hljs-number">0.7</span>.<span class="hljs-number">0</span>
+                <span class="hljs-attr">Keras-Applications</span>==<span class="hljs-number">1.0</span>.<span class="hljs-number">8</span>
+                <span class="hljs-attr">Keras-Preprocessing</span>==<span class="hljs-number">1.1</span>.<span class="hljs-number">0</span>
+                <span class="hljs-attr">konlpy</span>==<span class="hljs-number">0.5</span>.<span class="hljs-number">1</span>
+                <span class="hljs-attr">nltk</span>==<span class="hljs-number">3.4</span>.<span class="hljs-number">3</span>
+                <span class="hljs-attr">numpy</span>==<span class="hljs-number">1.16</span>.<span class="hljs-number">3</span>
+                <span class="hljs-attr">openpyxl</span>==<span class="hljs-number">2.6</span>.<span class="hljs-number">3</span>
+                <span class="hljs-attr">pandas</span>==<span class="hljs-number">0.24</span>.<span class="hljs-number">2</span>
+                <span class="hljs-attr">Pillow</span>==<span class="hljs-number">6.1</span>.<span class="hljs-number">0</span>
+                <span class="hljs-attr">Python</span>==<span class="hljs-number">3.7</span>.<span class="hljs-number">4</span>
+                <span class="hljs-attr">scikit-learn</span>==<span class="hljs-number">0.20</span>.<span class="hljs-number">3</span>
+                <span class="hljs-attr">scipy</span>==<span class="hljs-number">1.2</span>.<span class="hljs-number">1</span>
+                <span class="hljs-attr">slackclient</span>==<span class="hljs-number">2.1</span>.<span class="hljs-number">0</span>
+                <span class="hljs-attr">slackeventsapi</span>==<span class="hljs-number">2.1</span>.<span class="hljs-number">0</span>
+                <span class="hljs-attr">tensorboard</span>==<span class="hljs-number">1.14</span>.<span class="hljs-number">0</span>
+                <span class="hljs-attr">tensorflow-estimator</span>==<span class="hljs-number">1.14</span>.<span class="hljs-number">0</span>
+                <span class="hljs-attr">tensorflow-gpu</span>==<span class="hljs-number">1.14</span>.<span class="hljs-number">0</span>
+                <span class="hljs-attr">tqdm</span>==<span class="hljs-number">4.36</span>.<span class="hljs-number">0</span>
+                <span class="hljs-attr">wordcloud</span>==<span class="hljs-number">1.5</span>.<span class="hljs-number">0</span>
+                <span class="hljs-attr">xlrd</span>==<span class="hljs-number">1.2</span>.<span class="hljs-number">0</span>
+            </code>
+        </pre>
+        <h2 id="directory-structure">Directory Structure</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Base 프로젝트</th>
+                    <th>설명</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Data_in/<br />      chatbotdata.csv<br />Data_out/<br />      vocabularyData.voc<br />check_point<br />Configs.py<br />Data.py<br />Main.py<br />Model.py<br />Predict.py<br />app.py<br />db_init.py<br />app.db</td>
+                    <td>- 트레이닝 데이터 영역<br />- 트레이닝 데이터 파일<br />- 출력 데이터 영역<br />- 단어 사전 파일<br />- 학습된 모델의 check_point 저장 공간<br />- 모델 설정 소스<br />- 전 처리 및 모델에 주입되는 데이터셋 구성<br />- 학습을 실행하는 소스<br />- tensorflow seq2seq 모델 소스<br />- 학습된 모델로 예측하는 소스<br />- Flask 서버 소스<br />- app.db 파일을 생성하는 소스<br />- SQLite로 생성된 db 파일</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2 id="execution-result">Execution Result</h2>
+        <h3 id="slack">Slack</h3>
+        <p><img src="{{ url_for('static', filename='image/slack.PNG') }}" alt=""></p>
+        <h3 id="chatbot-web">Chatbot - Web</h3>
+        <p>실제 Think B를 실행하는 예시 화면이다.</p>
+        <p><img src="{{ url_for('static', filename='image/chat.gif') }}" alt=""></p>
+        <h3 id="teaching-web">Teaching - Web</h3>
+        <p>Think B에게 새로운 대화를 가르치는 과정의 예시입니다. </p>
+        <p><img src="{{ url_for('static', filename='image/teaching.gif') }}" alt=""></p>
+    </div>
+</body>
+<style>
+    img {
+        width: 70%;
+    };
+</style>
+</html>
